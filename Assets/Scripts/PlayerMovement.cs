@@ -11,7 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private bool mFaded = false;
     public float Duration = 0.4f;
 
-
+    public ButtonManager button;
+    public AudioSource Music;
+    public AudioSource death;
     public GameObject TutorialCanvas;
     public AudioSource FSound;
     public GameObject pSpawn;
@@ -73,8 +75,9 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 0f;
         MouseMove = false;
 
+        this.transform.rotation = new Quaternion(0, 0, 0, 0);
+        CameraPivot.transform.rotation = new Quaternion(0, 0, 0, 0);
 
-        
     }
     
     private void Update()
@@ -113,10 +116,16 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         StateMachine();
         StateHandler();
+
         
+       
+         if (Input.GetKeyDown(KeyCode.Escape))
+         {
+            button.Options();
+         }
       
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Void")
@@ -128,12 +137,14 @@ public class PlayerMovement : MonoBehaviour
             this.transform.position = pSpawn.transform.position;
             this.transform.rotation = new Quaternion(0, 0, 0, 0);
             CameraPivot.transform.rotation = new Quaternion(0, 0, 0, 0);
-            
+
             TutorialCanvas.SetActive(false);
             Time.timeScale = 0f;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            MouseMove = false;       
+            MouseMove = false;
+            death.Play();
+            Music.Stop();
         }
     }
     public void Fade()

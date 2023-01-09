@@ -5,10 +5,14 @@ using DG.Tweening;
 
 public class WallRunCam : MonoBehaviour
 {
+    public PlayerMovement player;
+    public GameObject WinCanvas;
     public GameObject leverO;
     public Lever lever;
-    public float interactRange = 500f;
+    public float interactRange = 5000f;
     public AudioSource LeverP;
+    public AudioSource TrophyP;
+    public Animation TrophyA;
     public KeyCode Interact = KeyCode.E;
     public float doordelay = 1.5f;
     private float doortime;
@@ -35,8 +39,15 @@ public class WallRunCam : MonoBehaviour
     {
         
         if (Input.GetKeyDown(KeyCode.E))
-        {   
-            
+        {
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactRange) && hit.transform.tag == "Trophy")
+            {
+                TrophyP.Play();
+                TrophyA.Play();
+                WinCanvas.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactRange) && hit.transform.tag == "Lever")
             {
                 Debug.DrawLine(transform.position, hit.transform.position, Color.green, interactRange);

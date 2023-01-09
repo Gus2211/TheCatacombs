@@ -9,6 +9,7 @@ TagManager:
   - Lever
   - Void
   - Used
+  - Trophy
   layers:
   - Default
   - TransparentFX

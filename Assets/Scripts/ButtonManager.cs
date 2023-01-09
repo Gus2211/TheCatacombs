@@ -9,6 +9,9 @@ public class ButtonManager : MonoBehaviour
     [SerializeField]
     private AudioMixer General;
 
+    public MoveData data;
+    public AudioSource Music;
+    public GameObject WinCanvas;
     public GameObject TutorialCanvas;
     public GameObject QualityCanvas;
     public GameObject AudioSettingsCanvas;
@@ -26,6 +29,8 @@ public class ButtonManager : MonoBehaviour
         playerS.MouseMove = true;
         Time.timeScale = 1f;
         TutorialCanvas.SetActive(true);
+        WinCanvas.SetActive(false);
+        Music.Play();
     }
     public void MainMenu()
     {
@@ -33,6 +38,7 @@ public class ButtonManager : MonoBehaviour
         MainMenuCanvas.SetActive(true);
         Time.timeScale = 0f;
         playerS.MouseMove = false;
+        WinCanvas.SetActive(false);
     }
 
     public void StartGame()
@@ -43,18 +49,20 @@ public class ButtonManager : MonoBehaviour
         playerS.MouseMove = true;
         Time.timeScale = 1f;
         HudCanvas.SetActive(true);
-
+        Music.Play();
 
         this.transform.localRotation = Quaternion.Euler(0, 0, 0);
         playerS.CameraPivot.transform.localRotation = Quaternion.Euler(0, 0, 0);
         TutorialCanvas.SetActive(true);
     }
-
+    
     public void Options()
     {
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         OptionsCanvas.SetActive(true);
         MainMenuCanvas.SetActive(false);
-
     }
     public void Audio()
     {
@@ -65,6 +73,7 @@ public class ButtonManager : MonoBehaviour
     {
         OptionsCanvas.SetActive(false);
         MainMenuCanvas.SetActive(true);
+        WinCanvas.SetActive(false);
     }
     public void OptionsBack()
     {
@@ -81,6 +90,11 @@ public class ButtonManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public void OnChangeSliderMouse(float value)
+    {
+        data.mouseSpeed = value;
+    }
+
     public void OnChangeSliderGeneral(float value)
     {
         General.SetFloat("General", Mathf.Log10(value) * 20);
