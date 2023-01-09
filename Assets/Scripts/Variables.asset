@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b159b1ede7ba84683e69fe174b72da, type: 3}
+  m_Name: Variables
+  m_EditorClassIdentifier: 
+  moveSpeed: 150
+  walkSpeed: 150
+  runSpeed: 200
+  mouseSpeed: 10
+  running: 0
+  walking: 1
+  groundDrag: 1
+  jumpForce: 600
+  jumpCooldown: 0.1
+  airMultiplier: 0.05
+  readyToJump: 1
+  turn: {x: 2646.1663, y: 37.99955}
+  maxcamDown: -70
+  maxcamUp: 70
+  jumpKey: 32
+  sprintKey: 304
+  playerHeight: 2
+  WhatIsGroundL:
+    serializedVersion: 2
+    m_Bits: 64
+  GroundCheckDistance: 0.2
+  grounded: 0
+  whatIsGround: Ground
+  horizontalInput: 0
+  verticalInput: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  useGravity: 1
+  gravityCounterForce: 1200
