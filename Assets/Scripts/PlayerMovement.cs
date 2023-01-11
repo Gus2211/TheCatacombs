@@ -179,6 +179,8 @@ public class PlayerMovement : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             MouseMove = false;
+            death.Play();
+            Music.Stop();
         }
     }
     private void FixedUpdate()
